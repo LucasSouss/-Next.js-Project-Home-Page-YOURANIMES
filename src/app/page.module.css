@@ -1,4 +1,20 @@
 .container {
+    
+    justify-content: end;
+}
+
+.titleTop {
     display: flex;
     justify-content: end;
+    padding-right: 30px;
+    
+}
+
+.Ulist {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+    margin-top: 20%;
+
 }

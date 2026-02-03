@@ -1,46 +1,39 @@
-import Image from "next/image";
-import UserRankingInitial from "./components/UserRankingInitial";
+import Image from "next/image"
 import style from './page.module.css'
-async function getTopAnime() {
-  const res = await fetch('https://api.jikan.moe/v4/top/anime?limit=10');
-  if (!res.ok) throw new Error('Falha ao buscar dados');
-  return res.json();
+
+async function getTopAnimes() {
+  const res = await fetch('https://api.jikan.moe/v4/top/anime?limit=10&filter=airing')
+  if (!res.ok) throw new Error('Falha ao buscar dados na API')
+  return res.json()
 }
 
+
+
 export default async function AnimeApp() {
-  const topAnimes = await getTopAnime();
+  const topAnimes = await getTopAnimes()
 
-  return (
-    <main>
-      <h1>Anime Ranker</h1>
+  return(
+    <section className={style.container}>
+      <h1 className={style.titleTop}>🌍 Top Animes Global</h1>
+      <ul className={style.Ulist}>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      {topAnimes.data.map((animes: any) => (
+        <li className={style.list} key={animes.mal_id}>
+            <span className={style.Title}>
+            {animes.title}
+            </span>
+            <Image className={style.Images}
+            src={animes.images.jpg.image_url}
+            width={70}
+            height={70}
+            alt="Picture of the author"
+            />
 
-      <section className={style.container}>
-        <h2>🌍 Top Animes do Mundo</h2>
-        <ul>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {topAnimes.data.map((anime: any) => (
-            <li key={anime.mal_id} >
-              <span>{anime.rank}. {anime.title}</span>
-              <Image
-               src={anime.images.jpg.image_url}
-                width={70}
-                height={70}
-                alt="Picture of the author"
-                
-              />
-
-              <span>- ⭐{anime.score}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <hr />
-
-      <section>
-        <h2>🏆 Meu Ranking Pessoal</h2>
-        <UserRankingInitial />
-      </section>
-    </main>
-  );
+            <span className={style.Score}>🏆{animes.score}</span>
+        </li>
+      )) }
+        
+      </ul>
+    </section>
+  )
 }

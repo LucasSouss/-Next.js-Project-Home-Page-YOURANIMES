@@ -1,20 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 .container {
-    
-    justify-content: end;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding: 2rem;
+  padding-block: 90px;
+  background-color: #020617;
+  
+  
+}
+
+.sidebar {
+  width: 100%;
+  max-width: 500px;
+  background-color: #061f5a;
+  border-radius: 12px;
+  box-shadow:-10px 0 30px #00000080;
+  padding: 2.5rem;
+  border: 2px solid #0257c7;
 }
 
 .titleTop {
-    display: flex;
-    justify-content: end;
-    padding-right: 30px;
-    
+  font-size: 2.4rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 3px;
 }
 
-.Ulist {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    flex-direction: column;
-    margin-top: 20%;
-
+.list {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s, background-color 0.2s;
+  gap: 3px;
+  margin-bottom: 10px;
 }
+
+.list:hover {
+  transform: translateX(-5px);
+  border-color: #38bdf8;
+}
+
+.Title {
+  flex-grow: 1;
+  font-size: 0.95rem;
+}
+
+.Score {
+  background-color: #fbbf24;
+  color: #020617;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+

@@ -1,6 +1,12 @@
 import styles from './allstyles/layout.module.css'
 import "./globals.css";
 import Image from 'next/image'
+import {Nabla} from 'next/font/google'
+
+const font = Nabla ({
+  weight: ['400']
+  
+})
 
 
 export default function RootLayout({
@@ -12,14 +18,15 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={`variable}`}>
         <header className={styles.header}>
-          <Image
+          {/* <Image
             src="/konoha-logo.jpg"
             width={50}
             height={50}
             alt="Picture of the author"
-          />
+          /> */}
        
-          <div className={styles.logo}>YourAnimes</div>
+          <div className={`${font.className} ${styles.logo}`}>Your<span className={styles.letterA}>A</span>nimes</div>
+          
           <nav className={styles.nav}>
             <a href="#">Home</a>
             <a href="#">Top Global</a>

@@ -8,20 +8,27 @@
   border-bottom: 3px solid #e94560; /* Detalhe em rosa/vermelho */
 }
 
-.konohaLogo {
+/* .konohaLogo {
   height: 50px;
   
 
-}
+} */
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #e94560;
-  padding-left: -10px;
   
+}
+.logo::first-letter {
+  font-size: 45px;
+  margin: 0;
+  padding: 0;
+}
+.letterA {
+  font-size: 45px;
 }
 
 .nav {

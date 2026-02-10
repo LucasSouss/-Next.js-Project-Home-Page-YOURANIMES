@@ -1,0 +1,76 @@
+/* Container que envolve o título e a grade */
+.popularWrapper {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Título da seção (Trending Now) */
+.sectionTitle {
+  color: #adb1b8;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* A Grade que organiza os itens lado a lado */
+.horizontalGrid {
+  display: grid;
+  /* Cria colunas que se ajustam: mínimo 220px cada */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+/* Card individual do anime */
+.horizontalCard {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+/* O "Pulo do Gato": Container da Imagem em formato Horizontal */
+.horizontalImageContainer {
+  position: relative;
+  width: 100%;
+  /* Define a proporção de 16:9 (formato de cinema/banner) */
+  aspect-ratio: 16 / 9; 
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #151f2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.horizontalImageContainer:hover {
+  transform: translateY(-5px);
+  border-color: #0257c7;
+}
+
+/* Estilização da imagem interna */
+.horizontalImg {
+  /* Faz a imagem original (vertical) preencher o espaço horizontal sem distorcer */
+  object-fit: cover;
+  object-position: center top; /* Foca na parte de cima/centro da imagem */
+}
+
+/* Texto do título embaixo da imagem horizontal */
+.horizontalTitle {
+  margin-top: 10px;
+  color: #9fadbd;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  /* Limita o texto a uma linha com reticências (...) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+
+.horizontalCard:hover .horizontalTitle {
+  color: #fff;
+}

@@ -1,9 +1,9 @@
 import Image from "next/image";
+import style from '../allstyles/PopularAnimes.module.css'
 
 async function PopularAnimes() {
-  const res = await fetch(
-    "https://api.jikan.moe/v4/manga?filter=all");
-  if (!res.ok) throw new Error("Falha na buscar dos dados na API");
+  const res = await fetch("https://api.jikan.moe/v4/seasons/now?limit=9");
+  if (!res.ok) throw new Error("Falha na busca");
   return res.json();
 }
 
@@ -11,26 +11,24 @@ export default async function GetPopularAnimes() {
   const MostPopular = await PopularAnimes();
 
   return (
-    <section>
-      <aside>
-        <h1>Animes Mais Populares</h1>
-        <ul>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {MostPopular.data.map((animes: any) => (
-            <li key={animes.mal_id}>
-              {animes.title}
-
-              
+    <div className={style.popularWrapper}>
+      <h2 className={style.sectionTitle}>TRENDING NOW</h2>
+      <div className={style.horizontalGrid}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {MostPopular.data.map((anime: any) => (
+          <div key={anime.mal_id} className={style.horizontalCard}>
+            <div className={style.horizontalImageContainer}>
               <Image
-                src={animes.images.jpg.image_url}
-                width={50}
-                height={50}
-                alt="s"
+                src={anime.images.jpg.large_image_url || anime.images.jpg.image_url}
+                fill
+                alt={anime.title}
+                className={style.horizontalImg}
               />
-            </li>
-          ))}
-        </ul>
-      </aside>
-    </section>
+            </div>
+            <p className={style.horizontalTitle}>{anime.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

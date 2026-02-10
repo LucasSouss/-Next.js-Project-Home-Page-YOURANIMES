@@ -1,59 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-
-
-
 .container {
   display: flex;
-  justify-content: flex-end;
+  background-color: #020617;
   min-height: 100vh;
   padding: 2rem;
-  padding-block: 90px;
-  background-color: #020617;
-  
-  
+  gap: 2rem;
 }
 
+.mainContent { flex: 1; }
+
+/* SIDEBAR (Estilo Original das imagens enviadas) */
 .sidebar {
   width: 100%;
-  max-width: 500px;
+  max-width: 380px;
   background-color: #061f5a;
   border-radius: 12px;
-  box-shadow:-10px 0 30px #00000080;
-  padding: 2.5rem;
+  padding: 2rem;
   border: 2px solid #0257c7;
-}
-
-.titleTop {
-  font-size: 2.rem;
-  margin-bottom: 2.5rem;
-  text-align: center;
-  width: 100%;
-  letter-spacing: 3px;
+  height: fit-content;
 }
 
 .list {
   display: flex;
   align-items: center;
-  transition: transform 0.2s, background-color 0.2s;
-  gap: 3px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: white;
 }
 
-.list:hover {
-  transform: translateX(-5px);
-  border-color: #38bdf8;
-}
-
-.Title {
-  flex-grow: 1;
-  font-size: 0.95rem;
-}
+.Images { border-radius: 4px; object-fit: cover; }
 
 .Score {
   background-color: #fbbf24;
   color: #020617;
-  white-space: nowrap;
-  border-radius: 20px;
-  padding: 6px 14px;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-weight: bold;
 }
 
+/* POPULARES (Estilo Horizontal/Banner) */
+.horizontalGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.horizontalImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Formato Horizontal */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+}
+
+.horizontalImg {
+  object-fit: cover; /* Faz o zoom necessário para o banner */
+  transition: transform 0.3s;
+}
+
+.horizontalCard:hover .horizontalImg { transform: scale(1.05); }
+
+.horizontalTitle {
+  color: #adb1b8;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sectionTitle {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}

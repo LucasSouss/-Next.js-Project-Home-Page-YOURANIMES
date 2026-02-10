@@ -1,8 +1,10 @@
 import Image from "next/image"
 import style from './page.module.css'
 import {Honk} from 'next/font/google'
+import GetPopularAnimes from "./components/PopularAnimes"
 
-const font = Honk ({
+//font logo
+const font = Honk ({ 
   weight: ['400']
 })
 
@@ -14,11 +16,15 @@ async function getTopAnimes() {
 
 
 
+
 export default async function AnimeApp() {
   const topAnimes = await getTopAnimes()
 
   return(
     <section className={style.container}>
+      <aside>
+      <GetPopularAnimes/>
+      </aside>
       <aside className={style.sidebar}>
       <h1 className={`${font.className} ${style.titleTop}`}>🌍 Top Animes Global</h1>
       <ul className={style.Ulist}>

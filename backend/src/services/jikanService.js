@@ -1,7 +1,6 @@
-import config from '../config/environment'
+import config from '../config/environment.js'
 
-
-export const jikanService = {
+const jikanService = {
     //Busca o top animes do momento
     getTopAnimes: async (limit = 50) => {
         try {
@@ -55,3 +54,5 @@ export const jikanService = {
         }
     }
 }
+
+export default jikanService

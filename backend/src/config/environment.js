@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-module.exports = {
+export default {
     port: process.env.PORT || 3333,
 
     jikanApiUrl: process.env.JIKAN_API_URL || 'https://api.jikan.moe/v4',

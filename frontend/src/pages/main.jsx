@@ -32,10 +32,10 @@ const Main = styled('main',{
 })
 
 export default function Home() {
-    const [favorite, setFavorite] = useState([])
+    const [favorites, setFavorites] = useState([])
 
     const handleFavorite = (anime) => {
-        setFavorite(prev => {
+        setFavorites(prev => {
             const exists = prev.some(fav => fav.mal_id === anime.mal_id)
 
             if (exists) {
@@ -50,3 +50,8 @@ export default function Home() {
         })
     }
 }
+
+const handleRemoveFavorite = (animeId) => {
+    setFavorites(prev => prev.filter(fav => fav.mal_id !== animeId))
+}
+

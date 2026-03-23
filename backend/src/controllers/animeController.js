@@ -3,7 +3,7 @@ import jikanService from '../services/jikanService.js'
 const animeController = {
     getTopAnimes: async (req, res) => {
         try{
-            const limit = req.query.limit ? parseInt(req.query.limit) : 50
+            const limit = req.query.limit ? parseInt(req.query.limit) : 25
 
             const animes = await jikanService.getTopAnimes(limit)
 

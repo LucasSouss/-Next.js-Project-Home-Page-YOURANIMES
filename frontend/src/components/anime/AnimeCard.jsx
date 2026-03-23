@@ -1,6 +1,6 @@
 import {styled} from '../../styles/stitches.config'
 import Button from '../ui/Button'
-import Image from 'next/Image'
+import Image from 'next/image'
 
 const Card = styled('div', {
     backgroundColor: '$surface',

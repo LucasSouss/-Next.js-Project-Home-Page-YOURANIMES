@@ -1,3 +1,5 @@
+"use client"
+
 import {styled} from '../styles/stitches.config'
 import FavoriteBar from '../components/favorites/FavoritesBar'
 import AnimeGrid from '../components/anime/AnimeGrid'
@@ -49,7 +51,7 @@ export default function Home() {
             }
         })
     }
-}
+
 
 const handleRemoveFavorite = (animeId) => {
     setFavorites(prev => prev.filter(fav => fav.mal_id !== animeId))
@@ -57,8 +59,21 @@ const handleRemoveFavorite = (animeId) => {
 
 return(
     <Container>
-        <Header>
+        {/* <Header>
             <Title>YourAnime</Title>
-        </Header>
+            <Subtitle>Descubra os melhores animes e crie sua lista</Subtitle>
+        </Header> */}
+        <FavoriteBar
+            favorites={favorites}
+            onRemoveFavorite={handleRemoveFavorite}
+        />
+
+        <Main>
+            <AnimeGrid
+                onFavorite={handleFavorite}
+                favorites={favorites}
+            />
+        </Main>
     </Container>
 )
+}

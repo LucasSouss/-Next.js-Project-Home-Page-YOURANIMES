@@ -11,7 +11,7 @@ const api = axios.create({
 })
 
 export const animeService = {
-    getTopAnimes: async (limit = 50) => {
+    getTopAnimes: async (limit = 25) => {
         try{
             const response = await api.get(`/animes?limit=${limit}`)
             return response.data

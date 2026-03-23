@@ -2,7 +2,7 @@ import config from '../config/environment.js'
 
 const jikanService = {
     //Busca o top animes do momento
-    getTopAnimes: async (limit = 50) => {
+    getTopAnimes: async (limit = 25) => {
         try {
             const response = await fetch(`${config.jikanApiUrl}/top/anime?limit=${limit}`)
 
@@ -15,7 +15,7 @@ const jikanService = {
             return data.data
         }catch (error){
             console.error('Erro ao buscar animes da Jikan', error.message)
-            throw new error('Não foi possível buscar os animes.')
+            throw new Error('Não foi possível buscar os animes.')
         }
     },
     //Busca um anime especifico pelo ID

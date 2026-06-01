@@ -1,30 +1,19 @@
-import { styled } from "@stitches/react";
+import { styled } from "../../styles/stitches.config";
 import AnimeCard from './AnimeCard'
-import Loading from '../ui/Loading'
-import {animeService} from '../../services/api'
+import Loading from '../ui/Loading' // Corrigido a importação/uso
+import { animeService } from '../../services/api'
 import { useEffect, useState } from "react";
 
 const Grid = styled('div', {
     display: 'grid',
-    gridTemplateColumns: 'repeat(1, 1fr)',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
     gap: '$lg',
     padding: '$lg',
 
-    '@sm': {
-        gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-
-    '@md': {
-        gridTemplateColumns: 'repeat(3, 1fr)',
-    },
-
-    '@lg': {
-        gridTemplateColumns: 'repeat(4, 1fr)',
-    },
-
-    '@xl': {
-        gridTemplateColumns: 'repeat(2, 1fr)',
-    },
+    '@sm': { gridTemplateColumns: 'repeat(2, 1fr)' },
+    '@md': { gridTemplateColumns: 'repeat(3, 1fr)' },
+    '@lg': { gridTemplateColumns: 'repeat(4, 1fr)' },
+    '@xl': { gridTemplateColumns: 'repeat(5, 1fr)' }, // Ajustado para 5 colunas no Desktop
 })
 
 const ErrorMessage = styled('div', {
@@ -34,15 +23,15 @@ const ErrorMessage = styled('div', {
     fontSize: '$lg',
 })
 
-export default function AnimeGrid({onFavorite, favorites = [] }) {
+export default function AnimeGrid({ onFavorite, favorites = [] }) {
     const [animes, setAnimes] = useState([])
-    const [Loading, setLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true) // Variável em camelCase para evitar conflito com o componente
     const [error, setError] = useState(null)
 
     useEffect(() => {
         const fetchAnimes = async () => {
             try {
-                setLoading(true)
+                setIsLoading(true)
                 const response = await animeService.getTopAnimes(25)
                 setAnimes(response.data)
                 setError(null)
@@ -50,35 +39,35 @@ export default function AnimeGrid({onFavorite, favorites = [] }) {
                 setError('Não foi possível carregar os animes. Tente novamente mais tarde.')
                 console.error(err)
             } finally {
-                setLoading(false)
+                setIsLoading(false)
             }
         }
         fetchAnimes()
     }, [])
-// AVISO: Luc, verificar porque precisa colocar nos favoritos novamente.
-const checkFavorite = (animeId) => {
-    return favorites.some(fav => fav.mal_id === animeId)
-}
 
-if (Loading) {
-    return <loading/>
-}
+    const checkFavorite = (animeId) => {
+        return favorites.some(fav => fav.mal_id === animeId)
+    }
 
-if (error) {
-    return <ErrorMessage>{error}</ErrorMessage>
-}
+    if (isLoading) {
+        return <Loading /> // Corrigido para PascalCase
+    }
 
-return (
-    <Grid>
-        {animes.map((anime) => (
-            <AnimeCard
-            key={anime.mal_id}
-            anime={anime}
-            onFavorite={onFavorite}
-            isFavorite={checkFavorite(anime.mal_id)}
-            />
-        ))}
-    </Grid>
+    if (error) {
+        return <ErrorMessage>{error}</ErrorMessage>
+    }
+
+    return (
+        <Grid>
+            {animes.map((anime, index) => (
+                <AnimeCard 
+                    key={anime.mal_id}
+                    anime={anime}
+                    index={index} // <--- PASSANDO O INDEX AQUI
+                    onFavorite={onFavorite}
+                    isFavorite={checkFavorite(anime.mal_id)}
+                />
+            ))}
+        </Grid>
     )
-
 }
